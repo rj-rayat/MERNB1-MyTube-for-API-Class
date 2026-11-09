@@ -2,7 +2,7 @@
 
 A beginner-friendly REST API built for learning and practicing API integration through a YouTube Clone project.
 
-This API is designed to help students understand how real-world applications fetch, display, and use data from APIs.
+This API helps students understand how real-world applications fetch, display, filter, and use data from APIs.
 
 ## 🌐 Base URL
 
@@ -10,19 +10,23 @@ This API is designed to help students understand how real-world applications fet
 https://openapi.twoinsoft.com
 ```
 
-## 📌 Available Endpoints
+## 📌 Available API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/videos` | Get all videos |
 | `GET` | `/videos/vid001` | Get a single video by ID |
 | `GET` | `/categories` | Get all video categories |
+| `GET` | `/category/1004` | Get videos by category ID |
 
-### 1. Get All Videos
+---
 
-Retrieve the available videos from the API.
+## 1. Get All Videos
+
+Retrieve all available videos from the API.
 
 **Endpoint:**
+
 ```http
 GET https://openapi.twoinsoft.com/videos
 ```
@@ -33,11 +37,12 @@ GET https://openapi.twoinsoft.com/videos
 - Show video thumbnails, titles, and channel information.
 - Build a video listing page.
 
-### 2. Get Single Video
+## 2. Get Single Video
 
 Retrieve a specific video using its unique video ID.
 
 **Endpoint:**
+
 ```http
 GET https://openapi.twoinsoft.com/videos/vid001
 ```
@@ -50,15 +55,16 @@ GET https://openapi.twoinsoft.com/videos/vid001
 
 **Path Parameter:**
 
-| Parameter | Description | Example |
+| Parameter | Example | Description |
 |---|---|---|
-| `videoId` | Unique ID of the video | `vid001` |
+| `videoId` | `vid001` | Unique video ID |
 
-### 3. Get All Categories
+## 3. Get All Categories
 
-Retrieve the available video categories.
+Retrieve all available video categories.
 
 **Endpoint:**
+
 ```http
 GET https://openapi.twoinsoft.com/categories
 ```
@@ -69,11 +75,31 @@ GET https://openapi.twoinsoft.com/categories
 - Build category-based filtering UI.
 - Organize videos by category.
 
+## 4. Get Videos by Category
+
+Retrieve videos belonging to a specific category using its category ID.
+
+**Endpoint:**
+
+```http
+GET https://openapi.twoinsoft.com/category/1004
+```
+
+**Path Parameter:**
+
+| Parameter | Example | Description |
+|---|---|---|
+| `categoryId` | `1004` | Unique category ID |
+
+**Use cases:**
+- Display videos from a selected category.
+- Implement category filtering.
+- Create category-specific video pages.
+- Show related videos based on category.
+
 ---
 
-## 💻 JavaScript Fetch Example
-
-You can use JavaScript's `fetch()` method to retrieve data from this API.
+## 💻 JavaScript Fetch Examples
 
 ### Get All Videos
 
@@ -85,7 +111,6 @@ const getVideos = async () => {
     );
 
     const data = await response.json();
-
     console.log(data);
   } catch (error) {
     console.error("Error fetching videos:", error);
@@ -105,7 +130,6 @@ const getVideo = async (videoId) => {
     );
 
     const data = await response.json();
-
     console.log(data);
   } catch (error) {
     console.error("Error fetching video:", error);
@@ -125,7 +149,6 @@ const getCategories = async () => {
     );
 
     const data = await response.json();
-
     console.log(data);
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -135,13 +158,32 @@ const getCategories = async () => {
 getCategories();
 ```
 
+### Get Videos by Category
+
+```javascript
+const getVideosByCategory = async (categoryId) => {
+  try {
+    const response = await fetch(
+      `https://openapi.twoinsoft.com/category/${categoryId}`
+    );
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching category videos:", error);
+  }
+};
+
+getVideosByCategory(1004);
+```
+
 ---
 
 ## 🧠 What Will You Learn?
 
 By working with this API, students can practice:
 
-- Understanding REST APIs
+- REST API fundamentals
 - HTTP GET requests
 - JavaScript `fetch()`
 - Async / Await
@@ -149,24 +191,26 @@ By working with this API, students can practice:
 - Dynamic rendering
 - Array methods (`map`, `filter`, etc.)
 - Loading and error handling
-- Building reusable components
-- Creating a YouTube-style user interface
+- Reusable components
+- Category-based filtering
+- Building a YouTube-style user interface
 
-## 🚀 Project Idea
+## 🚀 Project Ideas
 
-Build a YouTube Clone using this API.
+Build a YouTube Clone using these API endpoints.
 
 Suggested features:
 
 - Homepage with video cards
-- Video watch page
+- Video details / watch page
 - Category navigation
+- Category-based video filtering
 - Video thumbnails
 - Channel information
 - Responsive layout
 
 ## 📚 Learning Purpose
 
-This API is intended for educational and practice purposes. It helps beginner developers understand how frontend applications communicate with backend APIs and display dynamic data.
+This API is intended for educational and practice purposes. It helps beginner developers understand how frontend applications communicate with APIs and display dynamic data.
 
 **Happy Coding! ❤️**
