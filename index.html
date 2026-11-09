@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTube</title>
+
+    <!-- Daisy UI -->
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        .active {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="sticky top-0 bg-white z-50">
+        <nav class="h-15 w-full shadow-xs flex justify-between px-5">
+            <!-- Logo Side -->
+                <div class="flex gap-4 items-center">
+                    <div><i class="fa-solid font-bold text-2xl fa-bars"></i></div>
+                    <div class="flex gap-1">
+                        <i class="fa-brands text-red-600 text-3xl fa-youtube"></i>
+                        <h1 class="text-xl font-extrabold">MyTube</h1>
+                    </div>
+                </div>
+
+            <!-- Search Field Side -->
+            <div class="flex items-center gap-5">
+                <div class="hidden lg:grid">
+                    <label class="input w-xl rounded-full">
+                        
+                        <input type="search" class="grow text-md" placeholder="Search" />
+                        <button class="">
+                            <svg class="h-[2em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke="currentColor"
+                            >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        </button>
+                        
+                    </label>
+                </div>
+
+                
+                <div>
+
+                    <button class="h-10 bg-base-200 w-10 rounded-full">
+                        <i class="fa-solid text-xl fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Side -->
+            <div class="flex items-center gap-4">
+                <button popovertarget="popover-1"  class=" btn font-normal bg-base-200 rounded-full text-md"><i class="fa-solid text-xl  fa-plus"></i> Create
+                   <ul class="dropdown menu w-35 rounded-box bg-base-100 shadow-sm"
+                    popover id="popover-1">
+                    <li><a>Upload video</a></li>
+                    <li><a>Go Live</a></li>
+                    <li><a>Create Post</a></li>
+                    </ul>
+                </button>
+                <button><i class="fa-regular text-xl fa-bell"></i></button>
+                
+           
+                    <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                        <img
+                            alt="Tailwind CSS Navbar component"
+                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        </div>
+                    </div>
+                    <ul
+                        tabindex="-1"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li>
+                        <a class="justify-between">
+                            Profile
+                            <span class="badge">New</span>
+                        </a>
+                        </li>
+                        <li><a>Settings</a></li>
+                        <li><a>Logout</a></li>
+                    </ul>
+                </div>
+            
+        </nav>
+    </header>
+    <main class="grid grid-cols-1 lg:grid-cols-12 min-h-screen">
+
+        <!-- Sidebar -->
+        <aside class="col-span-2 p-3 sticky top-15 overflow-y-auto h-fit >
+            <div class="pl-2.5 pr-5">
+                <ul>
+                    <a href="/">
+                    <li class="h-10 bg-base-200 pl-2.5 flex items-center gap-5 rounded-xl"> <i class="fa-solid text-2xl fa-house"></i> Home</li> </a>
+                    <li class="h-10  pl-2.5 flex items-center gap-5 rounded-xl"> <i class="fa-brands text-2xl fa-youtube-shorts"></i> Shorts</li>
+                </ul>
+                
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="pl-2.5 pr-5">
+                <ul>
+                    <li class="h-10 pl-2.5 flex items-center gap-1 rounded-xl font-bold text-lg hover:bg-base-200 cursor-pointer">Subscription <i class="fa-solid fa-angle-right"></i></li>
+                </ul>
+                <ul id="channel-box">
+                    <li class="h-10 pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-regular text-2xl fa-circle-user"></i></i> Your channels</li>
+                    <li class="h-10  pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-solid text-2xl fa-clock-rotate-left"></i> History</li>
+                    <li class="h-10  pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-regular fa-circle-play text-2xl"></i> Playlist</li>
+                    <li onclick="watchLater()" class="h-10 cursor-pointer  pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-regular fa-clock text-2xl"></i></i> Watch later</li>
+                    <li class="h-10  pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-regular fa-thumbs-up text-2xl"></i> Liked Videos</li>
+                    <li class="h-10  pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-solid fa-picture-in-picture text-2xl"></i> Your Videos</li>
+                    <li class="h-10  pl-2.5 hover:bg-base-200 flex items-center gap-5 rounded-xl"> <i class="fa-solid fa-download text-2xl"></i> Download</li>
+                </ul>
+            </div>
+
+        </aside>
+
+        <!-- Section -->
+        <section class=" col-span-10 px-5  overflow-y-auto h-fit ">
+            <div class="py-4">
+                <ul id="category-container" class="flex gap-2">
+                    <li id="all-btn" onclick="loadData()" class="btn active btn-sm rounded-xl">All</li>
+                </ul>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-3" id="video-container">
+               
+
+
+            </div>
+
+            <div id="details-page" class="hidden">
+                
+            </div>
+
+            <div id="watch-later" class="hidden">
+                Watch later
+            </div>
+        </section>
+    </main>
+    
+    <script src="src/main/index.js"></script>
+</body>
+</html>
